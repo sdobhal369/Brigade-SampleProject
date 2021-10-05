@@ -6,8 +6,8 @@ events.on("exec", () => {
   one.run();
 });
 events.on("exec", () => {
-  var two = new Job("Second-job");
-  two.image = "alpine:3.4";
-  two.tasks = ["echo Congratulation"];
-  two.run();
+  var on = new Job("Second-job");
+  on.image = "alpine:3.4";
+  on.tasks = ["echo Congratulation"];
+  on.run();
 });
