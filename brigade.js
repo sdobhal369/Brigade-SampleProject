@@ -1,13 +1,13 @@
-const { events, Job } = require("brigadier");
+const { events, Job, Groups } = require("brigadier");
 events.on("exec", () => {
-  var one = new Job("first-job");
-  one.image = "alpine:3.4";
-  one.tasks = ["echo Hello World"];
-  one.run();
+  var build = new Job("build-job");
+  build.image = "alpine:3.4";
+  build.tasks = ["RUN apt-get update", 
+                 "RUN apt-get install -y python", 
+                 "ADD hello.py /home/hello.py", 
+                 "ENTRYPOINT ["python"]", 
+                 "CMD ["/home/hello.py"]",
+                 "docker build -t myimage:10  ."];
+  build.run();
 });
-events.on("exec", () => {
-  var sone = new Job("Second-job");
-  sone.image = "alpine:3.4";
-  sone.tasks = ["echo Congratulation"];
-  sone.run();
-});
+
