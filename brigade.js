@@ -6,9 +6,7 @@ events.on("exec", () => {
 
   dockerBuild.tasks = [
     "cd /src/",
-    "docker build -t sdobhal369/brigade-test:20 .",
-    "docker login -u ${project.secrets.dockerLogin} -p ${project.secrets.dockerPass},
-    "docker push sdobhal369/brigade-test:20"
+    "docker build -t sdobhal369/brigade-test:20 ."
   ]
 
   dockerBuild.run();
