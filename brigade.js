@@ -5,7 +5,8 @@ events.on("exec", () => {
 
   dockerBuild.tasks = [
     "dockerd-entrypoint.sh &",
-    "cd /src",
+    "sleep 30",
+    "cd /src/",
     "docker build -t sdobhal369/brigade-test:20 ."
   ]
 
