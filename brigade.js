@@ -4,7 +4,7 @@ events.on("exec", () => {
   dockerBuild.image = "docker:dind";
 
   dockerBuild.tasks = [
-    "dockerd-entrypoint.sh &"
+    "dockerd-entrypoint.sh &",
     "cd /src",
     "docker build -t sdobhal369/brigade-test:20 ."
   ]
