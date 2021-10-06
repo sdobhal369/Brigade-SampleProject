@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM alpine:3.4
 
 RUN apt-get update
 RUN apt-get install -y python
