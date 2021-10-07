@@ -1,12 +1,14 @@
 const { events, Job } = require("brigadier");
-events.on("exec", () => {
+events.on("exec", (e,project) => {
   var dockerBuild = new Job("docker-packaging");
   dockerBuild.image = "docker:dind";
   dockerBuild.docker.enabled = true;
-  
-  dockerBuild.env.DOCKER_USER = project.secrets.dockerLogin
-  dockerBuild.env.DOCKER_PASS = project.secrets.dockerPass
-  
+  dockerBuild.env = {
+    DOCKER_DRIVER: "overlay",
+    DOCKER_USER: project.secrets.dockerLogin,
+    DOCKER_PASS: project.secrets.dockerPass
+  }
+    
   dockerBuild.tasks = [
     "dockerd-entrypoint.sh &",
     "sleep 30",
