@@ -1,7 +1,6 @@
 const { events, Job } = require("brigadier");
 events.on("exec", () => {
-  var dockerBuild = new Job("docker-build")
-  dockerBuild.image = "docker:dind";
+  const dockerBuild = new Job("docker-build", "docker:stable-dind");
   dockerBuild.privileged = true;
   dockerBuild.tasks = [
     "dockerd-entrypoint.sh &",
