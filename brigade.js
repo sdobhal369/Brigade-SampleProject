@@ -1,6 +1,6 @@
 const { events, Job } = require("brigadier");
 events.on("exec", () => {
-  var dockerBuild = new Job("docker-Packaging");
+  var dockerBuild = new Job("docker-packaging");
   dockerBuild.image = "docker:dind";
   dockerBuild.docker.enabled = true;
   dockerBuild.tasks = [
