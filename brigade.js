@@ -4,11 +4,10 @@ events.on("exec", () => {
   dockerBuild.image = "docker:dind";
 
   dockerBuild.tasks = [
-    "sudo dockerd-entrypoint.sh &",
+    "dockerd-entrypoint.sh &",
     "sleep 30",
     "cd /src/",
-    "sudo docker build -t sdobhal369/brigade-test:20 ."
+    "docker build -t sdobhal369/brigade-test:20 ."
   ]
-
   dockerBuild.run();
 });
