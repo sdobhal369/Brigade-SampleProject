@@ -2,7 +2,8 @@ const { events, Job } = require("brigadier");
 events.on("exec", (e,project) => {
   var dockerBuild = new Job("docker-packaging");
   dockerBuild.image = "docker:dind";
-  dockerBuild.docker.enabled = true;
+  dockerBuild.docker.enabled = false;
+  dockerBuild.privileged = true;
   dockerBuild.env = {
     DOCKER_DRIVER: "overlay",
     DOCKER_USER: project.secrets.dockerLogin,
@@ -13,9 +14,9 @@ events.on("exec", (e,project) => {
     "dockerd-entrypoint.sh &",
     "sleep 30",
     "cd /src",
-    "docker build -t sdobhal369/brigade-test:30 .",
+    "docker build -t sdobhal369/brigade-test:40 .",
     "docker login -u $DOCKER_USER -p $DOCKER_PASS",
-    "docker push sdobhal369/brigade-test:30"
+    "docker push sdobhal369/brigade-test:40"
   ];
   
   dockerBuild.run();
